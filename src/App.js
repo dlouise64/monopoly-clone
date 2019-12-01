@@ -3,6 +3,7 @@ import './App.css'
 // import styled from 'styled-components'
 import Card from './components/Card'
 import colour from './components/colours'
+import Board from './components/Board'
 
 const cardDetails = [
 	{
@@ -68,12 +69,16 @@ const cardDetails = [
 ]
 
 function App() {
-	return cardDetails.map(card => (
-		<Card color={card.color} type={card.type}>
-			<h1>{card.name}</h1>
-			<p>${card.price}</p>
-		</Card>
-	))
+	return (
+		<Board>
+			{cardDetails.map(card => (
+				<Card color={card.color} type={card.type}>
+					<h1>{card.name}</h1>
+					<p>${card.price}</p>
+				</Card>
+			))}
+		</Board>
+	)
 }
 
 export default App
