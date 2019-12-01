@@ -25,6 +25,25 @@ const CardInner = styled.div`
 	position: relative;
 	cursor: pointer;
 	background: ${props => props.color === 'blue' && '#5dace2'};
+	h1 {
+		margin: 0;
+		color: #fff;
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 16px;
+		padding-top: 10px;
+		letter-spacing: 1px;
+	}
+	p {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 15px;
+		text-align: center;
+		color: rgba(244, 244, 244, 0.8);
+		margin: 0;
+		letter-spacing: 1px;
+	}
 `
 
 export default Card
