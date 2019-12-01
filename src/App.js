@@ -12,7 +12,10 @@ function App() {
 	})
 
 	function handlePreviewCard(card) {
-		setPreviewCard({ show: true, card: card })
+		setPreviewCard({
+			show: card.name !== 'Jail' && card.name !== 'Start' ? true : false,
+			card: card
+		})
 	}
 
 	function handleExit() {

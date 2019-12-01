@@ -8,7 +8,7 @@ function Card(props) {
 				<div></div>
 			) : (
 				<CardStyled>
-					<CardInner color={props.type === 'place' && props.color}>
+					<CardInner color={props.type === 'place' ? props.color : '#fff'}>
 						{props.type === 'place' && <Place>{props.children}</Place>}
 						{props.type === 'utility' && <Utility>{props.children}</Utility>}
 						{props.type === 'chance' && <Chance>{props.children}</Chance>}
@@ -38,7 +38,7 @@ const CardInner = styled.div`
 	border-radius: 10px;
 	position: relative;
 	cursor: pointer;
-	background: ${props => (props.color ? props.color : '#fff')};
+	background: ${props => (props.color !== undefined ? props.color : '#fff')};
 `
 
 const Place = styled.div`
