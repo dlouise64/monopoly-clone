@@ -4,7 +4,8 @@ const cards = [
 	{
 		type: 'chance',
 		name: '?',
-		color: colour.green
+		color: colour.green,
+		description: 'Draw a Chance card'
 	},
 	{
 		type: 'place',
@@ -220,7 +221,8 @@ const cards = [
 	{
 		type: 'community',
 		name: '?',
-		color: colour.green
+		color: colour.green,
+		description: 'Draw a Community card'
 	}
 ]
 
