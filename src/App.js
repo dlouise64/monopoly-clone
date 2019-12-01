@@ -11,6 +11,9 @@ const cardDetails = [
 		name: '?'
 	},
 	{
+		type: 'empty'
+	},
+	{
 		type: 'community',
 		name: '?'
 	},

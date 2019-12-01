@@ -3,14 +3,22 @@ import styled from 'styled-components'
 
 function Card(props) {
 	return (
-		<CardStyled>
-			<CardInner color={props.color}>
-				{props.type === 'place' && <Place>{props.children}</Place>}
-				{props.type === 'chance' && <Chance>{props.children}</Chance>}
-				{props.type === 'community' && <Community>{props.children}</Community>}
-				{props.type === 'unlucky' && <Unlucky>{props.children}</Unlucky>}
-			</CardInner>
-		</CardStyled>
+		<>
+			{props.type === 'empty' ? (
+				<div></div>
+			) : (
+				<CardStyled>
+					<CardInner color={props.color}>
+						{props.type === 'place' && <Place>{props.children}</Place>}
+						{props.type === 'chance' && <Chance>{props.children}</Chance>}
+						{props.type === 'community' && (
+							<Community>{props.children}</Community>
+						)}
+						{props.type === 'unlucky' && <Unlucky>{props.children}</Unlucky>}
+					</CardInner>
+				</CardStyled>
+			)}
+		</>
 	)
 }
 
