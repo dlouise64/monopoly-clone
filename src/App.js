@@ -15,6 +15,10 @@ function App() {
 		setPreviewCard({ show: true, card: card })
 	}
 
+	function handleExit() {
+		setPreviewCard({ show: false, card: { ...previewCard.card } })
+	}
+
 	return (
 		<Board>
 			{cards.map((card, i) => (
@@ -25,7 +29,9 @@ function App() {
 					</Card>
 				</div>
 			))}
-			{previewCard.show && <PreviewCard card={previewCard.card} />}
+			{previewCard.show && (
+				<PreviewCard card={previewCard.card} handleExit={handleExit} />
+			)}
 		</Board>
 	)
 }

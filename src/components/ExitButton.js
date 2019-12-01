@@ -16,6 +16,7 @@ const Exit = styled.div`
 	z-index: 1;
 	right: 43px;
 	top: 30px;
+	cursor: pointer;
 `
 const Bottom = styled.div`
 	position: absolute;

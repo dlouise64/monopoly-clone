@@ -5,8 +5,15 @@ import ExitButton from './ExitButton'
 function PreviewCard(props) {
 	return (
 		<PreviewCardWrapper color={props.card.color}>
-			{console.log('here', props.card)}
-			<ExitButton />
+			<div
+				onClick={() =>
+					props.handleExit({
+						show: false,
+						card: props.card
+					})
+				}>
+				<ExitButton />
+			</div>
 			<header>
 				<h1>{props.card.name}</h1>
 			</header>
