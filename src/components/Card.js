@@ -138,7 +138,7 @@ const Chance = styled.div`
 		text-align: center;
 		color: #9d8db5;
 		padding-top: 15px;
-		font-size: 48px;
+		font-size: 50px;
 	}
 `
 
@@ -147,8 +147,8 @@ const Community = styled.div`
 		margin: 0;
 		text-align: center;
 		color: #9d8db5;
-		padding-top: 15px;
-		font-size: 48px;
+		padding-top: 5px;
+		font-size: 50px;
 	}
 `
 
