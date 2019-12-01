@@ -15,7 +15,7 @@ function PreviewCard(props) {
 				<ExitButton />
 			</div>
 			<header>
-				<h1>{props.card.name}</h1>
+				<h1>{props.card.name === '?' ? 'Chance' : props.card.name}</h1>
 			</header>
 			{props.card.description && (
 				<Description>{props.card.description}</Description>
