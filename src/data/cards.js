@@ -38,7 +38,8 @@ const cards = [
 	},
 	{
 		type: 'utility',
-		name: 'Water works'
+		name: 'Water works',
+		color: colour.beige
 	},
 
 	{
@@ -47,7 +48,8 @@ const cards = [
 	},
 	{
 		type: 'utility',
-		name: 'Electricity'
+		name: 'Electricity',
+		color: colour.beige
 	},
 	{
 		type: 'empty'
@@ -111,7 +113,8 @@ const cards = [
 	},
 	{
 		type: 'utility',
-		name: 'Airlines'
+		name: 'Airlines',
+		color: colour.beige
 	},
 	{
 		type: 'empty'
@@ -198,7 +201,8 @@ const cards = [
 
 	{
 		type: 'utility',
-		name: 'Railway'
+		name: 'Railway',
+		color: colour.beige
 	},
 
 	{
