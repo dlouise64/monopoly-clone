@@ -10,6 +10,7 @@ function Card(props) {
 				<CardStyled>
 					<CardInner color={props.color}>
 						{props.type === 'place' && <Place>{props.children}</Place>}
+						{props.type === 'utility' && <Utility>{props.children}</Utility>}
 						{props.type === 'chance' && <Chance>{props.children}</Chance>}
 						{props.type === 'community' && (
 							<Community>{props.children}</Community>
@@ -59,6 +60,16 @@ const Place = styled.div`
 		color: rgba(244, 244, 244, 0.8);
 		margin: 0;
 		letter-spacing: 1px;
+	}
+`
+
+const Utility = styled.div`
+	h1 {
+		padding-top: 5px;
+		font-size: 13px;
+		color: #db9e9a;
+		text-align: center;
+		text-transform: uppercase;
 	}
 `
 

@@ -18,6 +18,22 @@ const cardDetails = [
 		name: '?'
 	},
 	{
+		type: 'utility',
+		name: 'Water works'
+	},
+	{
+		type: 'utility',
+		name: 'Electricity'
+	},
+	{
+		type: 'utility',
+		name: 'Airlines'
+	},
+	{
+		type: 'utility',
+		name: 'Railway'
+	},
+	{
 		type: 'unlucky',
 		name: 'Tax'
 	},
