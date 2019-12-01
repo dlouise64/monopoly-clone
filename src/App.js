@@ -4,14 +4,15 @@ import './App.css'
 import Card from './components/Card'
 const cardDetails = {
 	name: 'Paris',
-	color: 'blue'
+	color: 'blue',
+	price: 180
 }
 
 function App() {
 	return (
 		<Card color={cardDetails.color}>
 			<h1>{cardDetails.name}</h1>
-			<p>$180</p>
+			<p>${cardDetails.price}</p>
 		</Card>
 	)
 }
