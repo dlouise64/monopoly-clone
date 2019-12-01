@@ -145,7 +145,7 @@ const Community = styled.div`
 		margin: 0;
 		text-align: center;
 		color: #9d8db5;
-		padding-top: 5px;
+		padding-top: 15px;
 		font-size: 50px;
 	}
 `
