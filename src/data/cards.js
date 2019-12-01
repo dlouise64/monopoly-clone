@@ -3,7 +3,8 @@ import colour from '../components/colours'
 const cards = [
 	{
 		type: 'chance',
-		name: '?'
+		name: '?',
+		color: colour.green
 	},
 	{
 		type: 'place',
@@ -212,7 +213,8 @@ const cards = [
 	},
 	{
 		type: 'community',
-		name: '?'
+		name: '?',
+		color: colour.green
 	}
 ]
 
