@@ -1,12 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ReactComponent as Flash } from '../images/flash.svg'
+import { ReactComponent as Tap } from '../images/tap.svg'
+import { ReactComponent as Airline } from '../images/airliner.svg'
+import { ReactComponent as Train } from '../images/train.svg'
 
 function Card(props) {
 	function Icon(icon) {
 		switch (icon) {
 			case 'Electricity':
 				return <Flash />
+			case 'Water works':
+				return <Tap />
+			case 'Airlines':
+				return <Airline />
+			case 'Railway':
+				return <Train />
 			default:
 				return null
 		}
@@ -23,7 +32,10 @@ function Card(props) {
 							<Utility>
 								<>
 									{props.children}
-									<div>{Icon(props.children[0].props.children)}</div>
+									<div>
+										{Icon(props.children[0].props.children)}
+										{console.log(props.children[0].props.children)}
+									</div>
 								</>
 							</Utility>
 						)}
@@ -86,7 +98,7 @@ const Utility = styled.div`
 	}
 	h1 {
 		margin-top: 5px;
-		font-size: 13px;
+		font-size: 12px;
 		color: #db9e9a;
 		text-align: center;
 		text-transform: uppercase;
