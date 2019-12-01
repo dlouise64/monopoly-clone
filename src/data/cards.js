@@ -21,7 +21,8 @@ const cards = [
 	{
 		type: 'text',
 		name: 'Tax',
-		color: colour.green
+		color: colour.green,
+		description: 'Pay 7% of your assets to the bank when you land on this card'
 	},
 	{
 		type: 'place',
@@ -127,7 +128,8 @@ const cards = [
 	{
 		type: 'text',
 		name: 'Tax',
-		color: colour.green
+		color: colour.green,
+		description: 'Pay 7% of your assets to the bank when you land on this card'
 	},
 	{
 		type: 'place',

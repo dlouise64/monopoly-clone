@@ -17,6 +17,9 @@ function PreviewCard(props) {
 			<header>
 				<h1>{props.card.name}</h1>
 			</header>
+			{props.card.description && (
+				<Description>{props.card.description}</Description>
+			)}
 			{props.card.property_details && (
 				<>
 					<PreviewCardTableWrapper>
@@ -40,6 +43,13 @@ function PreviewCard(props) {
 	)
 }
 
+function Description(props) {
+	return (
+		<DescriptionInner>
+			<p>{props.children}</p>
+		</DescriptionInner>
+	)
+}
 function PreviewCardHotels(props) {
 	return (
 		<table>
@@ -201,6 +211,16 @@ const PreviewCardWrapper = styled.div`
 				2px 2px #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
 				0 4px 2px rgba(0, 0, 0, 0.31);
 		}
+	}
+`
+
+const DescriptionInner = styled.div`
+	margin: 80px 50px 20px;
+	font-size: 24px;
+	p {
+		text-align: center;
+		color: #585858;
+		line-height: 1.5;
 	}
 `
 
