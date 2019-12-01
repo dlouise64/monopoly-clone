@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import ExitButton from './ExitButton'
 
 function PreviewCard() {
 	return (
 		<PreviewCardWrapper color="#5dace2">
+			<ExitButton />
 			<header>
 				<h1>Paris</h1>
 			</header>
