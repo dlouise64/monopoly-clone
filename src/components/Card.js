@@ -4,8 +4,10 @@ import { ReactComponent as Flash } from '../images/flash.svg'
 import { ReactComponent as Tap } from '../images/tap.svg'
 import { ReactComponent as Airline } from '../images/airliner.svg'
 import { ReactComponent as Train } from '../images/train.svg'
+import { ReactComponent as Jail } from '../images/jail.svg'
 
 function Card(props) {
+	const { type, color, children } = props
 	function Icon(icon) {
 		switch (icon) {
 			case 'Electricity':
@@ -22,34 +24,59 @@ function Card(props) {
 	}
 	return (
 		<>
-			{props.type === 'empty' ? (
+			{type === 'empty' ? (
 				<div></div>
 			) : (
 				<CardStyled>
-					<CardInner color={props.type === 'place' ? props.color : '#fff'}>
-						{props.type === 'place' && <Place>{props.children}</Place>}
-						{props.type === 'utility' && (
+					<CardInner color={type === 'place' ? color : '#fff'}>
+						{type === 'place' && <Place>{children}</Place>}
+						{type === 'utility' && (
 							<Utility>
 								<>
-									{props.children}
+									{children}
 									<div>
-										{Icon(props.children[0].props.children)}
-										{console.log(props.children[0].props.children)}
+										{Icon(children[0].props.children)}
+										{console.log(children[0].props.children)}
 									</div>
 								</>
 							</Utility>
 						)}
-						{props.type === 'chance' && <Chance>{props.children}</Chance>}
-						{props.type === 'community' && (
-							<Community>{props.children}</Community>
+						{type === 'chance' && <Chance>{children}</Chance>}
+						{type === 'community' && <Community>{children}</Community>}
+						{type === 'text' && (
+							<Text>
+								{children[0].props.children === 'Jail' ? (
+									<JailWrapper>
+										<Jail />
+									</JailWrapper>
+								) : (
+									children
+								)}
+							</Text>
 						)}
-						{props.type === 'text' && <Text>{props.children}</Text>}
 					</CardInner>
 				</CardStyled>
 			)}
 		</>
 	)
 }
+
+const JailWrapper = styled.div`
+	position: relative;
+	left: 11px;
+	top: 8px;
+	background: #9c89b8;
+	height: 80px;
+	width: 80px;
+	text-align: center;
+	border-radius: 50%;
+
+	svg {
+		position: absolute;
+		top: 14px;
+		left: 17px;
+	}
+`
 
 const CardStyled = styled.div`
 	display: inline-block;
