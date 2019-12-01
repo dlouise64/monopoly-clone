@@ -40,7 +40,13 @@ const cards = [
 	{
 		type: 'utility',
 		name: 'Water works',
-		color: colour.beige
+		color: colour.beige,
+		property_details: {
+			price: 120,
+			rent: 12,
+			mortgage: 60,
+			upgrade: 80
+		}
 	},
 
 	{
@@ -50,7 +56,13 @@ const cards = [
 	{
 		type: 'utility',
 		name: 'Electricity',
-		color: colour.beige
+		color: colour.beige,
+		property_details: {
+			price: 80,
+			rent: 8,
+			mortgage: 40,
+			upgrade: 60
+		}
 	},
 	{
 		type: 'empty'
@@ -115,7 +127,13 @@ const cards = [
 	{
 		type: 'utility',
 		name: 'Airlines',
-		color: colour.beige
+		color: colour.beige,
+		property_details: {
+			price: 60,
+			rent: 5,
+			mortgage: 30,
+			upgrade: 40
+		}
 	},
 	{
 		type: 'empty'
@@ -203,7 +221,13 @@ const cards = [
 	{
 		type: 'utility',
 		name: 'Railway',
-		color: colour.beige
+		color: colour.beige,
+		property_details: {
+			price: 140,
+			rent: 15,
+			mortgage: 70,
+			upgrade: 100
+		}
 	},
 
 	{

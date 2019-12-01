@@ -33,11 +33,8 @@ function Card(props) {
 						{type === 'utility' && (
 							<Utility>
 								<>
-									{children}
-									<div>
-										{Icon(children[0].props.children)}
-										{console.log(children[0].props.children)}
-									</div>
+									<h1>{children[0].props.children}</h1>
+									<div>{Icon(children[0].props.children)}</div>
 								</>
 							</Utility>
 						)}

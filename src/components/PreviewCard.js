@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import ExitButton from './ExitButton'
+import { ReactComponent as Star } from '../images/star.svg'
 
 function PreviewCard(props) {
 	return (
@@ -28,6 +29,13 @@ function PreviewCard(props) {
 			)}
 			{props.card.property_details && (
 				<>
+					{props.card.type === 'utility' && (
+						<StarWrapper>
+							<Star />
+							<Star />
+							<Star />
+						</StarWrapper>
+					)}
 					<PreviewCardTableWrapper>
 						<PreviewCardTable
 							price={props.card.property_details.price}
@@ -40,9 +48,17 @@ function PreviewCard(props) {
 							rents={props.card.property_details.hotel_rents}
 						/>
 					</PreviewCardHotelsWrapper>
-					<p>
-						Each hotel upgrade costs: $ {props.card.property_details.upgrade}
-					</p>
+					{props.card.type === 'place' && (
+						<p>
+							Each hotel upgrade costs: $ {props.card.property_details.upgrade}
+						</p>
+					)}
+					{props.card.type === 'utility' && (
+						<p>
+							Each upgrade costs $ {props.card.property_details.upgrade} and
+							property can be upgraded till 3 stars
+						</p>
+					)}
 				</>
 			)}
 		</PreviewCardWrapper>
@@ -120,6 +136,27 @@ const PreviewCardHotelsInner = styled.div`
 	> p {
 		margin: 0;
 		font-size: 20px;
+	}
+`
+
+const StarWrapper = styled.div`
+	background: #b4b2b2;
+	padding: 5px;
+	display: inline-block;
+	margin-top: -15px;
+	margin-left: 140px;
+	margin-right: 140px;
+	width: 103px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+
+	svg:first-child {
+		margin-right: 2px;
+		padding-left: 2px;
+	}
+
+	svg:last-child {
+		margin-left: 2px;
 	}
 `
 
