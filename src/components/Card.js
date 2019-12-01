@@ -15,7 +15,7 @@ function Card(props) {
 						{props.type === 'community' && (
 							<Community>{props.children}</Community>
 						)}
-						{props.type === 'unlucky' && <Unlucky>{props.children}</Unlucky>}
+						{props.type === 'text' && <Text>{props.children}</Text>}
 					</CardInner>
 				</CardStyled>
 			)}
@@ -93,7 +93,7 @@ const Community = styled.div`
 	}
 `
 
-const Unlucky = styled.div`
+const Text = styled.div`
 	h1 {
 		font-size: 24px;
 		padding-top: 30px;
