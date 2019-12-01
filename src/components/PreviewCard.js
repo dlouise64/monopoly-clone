@@ -218,6 +218,16 @@ const PreviewCardTableWrapper = styled.div`
 `
 
 const PreviewCardWrapper = styled.div`
+	@keyframes bounce-in {
+		0% {
+			transform: scale(0);
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
+
+	animation: bounce-in 200ms cubic-bezier(0, 0, 0, 1.3) forwards;
 	padding: 0 20px;
 	background: white;
 	width: 390px;
