@@ -2,50 +2,46 @@ import React from 'react'
 import styled from 'styled-components'
 import ExitButton from './ExitButton'
 
-function PreviewCard() {
+function PreviewCard(props) {
 	return (
-		<PreviewCardWrapper color="#5dace2">
+		<PreviewCardWrapper color={props.card.color}>
+			{console.log('here', props.card)}
 			<ExitButton />
 			<header>
-				<h1>Paris</h1>
+				<h1>{props.card.name}</h1>
 			</header>
 			<PreviewCardTableWrapper>
-				<PreviewCardTable />
+				<PreviewCardTable
+					price={props.card.price}
+					rent={props.card.rent}
+					mortgage={props.card.mortgage}
+				/>
 			</PreviewCardTableWrapper>
 			<PreviewCardHotelsWrapper>
-				<PreviewCardHotels />
+				<PreviewCardHotels rents={props.card.hotel_rents} />
 			</PreviewCardHotelsWrapper>
-			<p>Each hotel upgrade costs: $ 120</p>
+			<p>Each hotel upgrade costs: $ {props.card.upgrade}</p>
 		</PreviewCardWrapper>
 	)
 }
 
-function PreviewCardHotels() {
+function PreviewCardHotels(props) {
 	return (
 		<table>
 			<tbody>
 				<tr>
-					<td>
-						<PreviewCardHotelsInner>
-							<Hotel count={1} />
-							<h2>Rent</h2>
-							<p>$ 90</p>
-						</PreviewCardHotelsInner>
-					</td>
-					<td>
-						<PreviewCardHotelsInner>
-							<Hotel count={2} />
-							<h2>Rent</h2>
-							<p>$ 225</p>
-						</PreviewCardHotelsInner>
-					</td>
-					<td>
-						<PreviewCardHotelsInner>
-							<Hotel count={3} />
-							<h2>Rent</h2>
-							<p>$ 350</p>
-						</PreviewCardHotelsInner>
-					</td>
+					{props.rents &&
+						props.rents.map((rent, i) => {
+							return (
+								<td key={i}>
+									<PreviewCardHotelsInner>
+										<Hotel count={i + 1} />
+										<h2>Rent</h2>
+										<p>$ {rent}</p>
+									</PreviewCardHotelsInner>
+								</td>
+							)
+						})}
 				</tr>
 			</tbody>
 		</table>
@@ -56,27 +52,29 @@ function Hotel(props) {
 	return (
 		<HotelWrapper>
 			{Array.from(Array(props.count)).map((item, i) => (
-				<span key={i}>🏠</span>
+				<span key={i} role="img" aria-label="hotel">
+					🏠
+				</span>
 			))}
 		</HotelWrapper>
 	)
 }
 
-function PreviewCardTable() {
+function PreviewCardTable(props) {
 	return (
 		<table>
 			<tbody>
 				<tr>
 					<td>Price</td>
-					<td>$ 180</td>
+					<td>$ {props.price}</td>
 				</tr>
 				<tr>
 					<td>Rent</td>
-					<td>$ 22</td>
+					<td>$ {props.rent}</td>
 				</tr>
 				<tr>
 					<td>Mortgage</td>
-					<td>$ 100</td>
+					<td>$ {props.mortgage}</td>
 				</tr>
 			</tbody>
 		</table>
