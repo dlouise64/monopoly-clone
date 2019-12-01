@@ -8,6 +8,7 @@ function Card(props) {
 				{props.type === 'place' && <Place>{props.children}</Place>}
 				{props.type === 'chance' && <Chance>{props.children}</Chance>}
 				{props.type === 'community' && <Community>{props.children}</Community>}
+				{props.type === 'unlucky' && <Unlucky>{props.children}</Unlucky>}
 			</CardInner>
 		</CardStyled>
 	)
@@ -70,6 +71,17 @@ const Community = styled.div`
 		color: #9d8db5;
 		padding-top: 15px;
 		font-size: 48px;
+	}
+`
+
+const Unlucky = styled.div`
+	h1 {
+		font-size: 24px;
+		padding-top: 30px;
+		color: #9d8db5;
+		margin: 0;
+		text-align: center;
+		text-transform: uppercase;
 	}
 `
 

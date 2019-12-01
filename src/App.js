@@ -15,6 +15,18 @@ const cardDetails = [
 		name: '?'
 	},
 	{
+		type: 'unlucky',
+		name: 'Tax'
+	},
+	{
+		type: 'unlucky',
+		name: 'Tax'
+	},
+	{
+		type: 'unlucky',
+		name: 'Jail'
+	},
+	{
 		type: 'place',
 		name: 'Sydney',
 		color: colour.yellow,
