@@ -4,7 +4,7 @@ import './App.css'
 import Card from './components/Card'
 const cardDetails = {
 	name: 'Paris',
-	color: 'blue',
+	color: '#5dace2',
 	price: 180
 }
 

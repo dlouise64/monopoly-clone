@@ -24,7 +24,7 @@ const CardInner = styled.div`
 	border-radius: 10px;
 	position: relative;
 	cursor: pointer;
-	background: ${props => props.color === 'blue' && '#5dace2'};
+	background: ${props => props.color};
 	h1 {
 		margin: 0;
 		color: #fff;
