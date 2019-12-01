@@ -1,7 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import { ReactComponent as Flash } from '../images/flash.svg'
 
 function Card(props) {
+	function Icon(icon) {
+		switch (icon) {
+			case 'Electricity':
+				return <Flash />
+			default:
+				return null
+		}
+	}
 	return (
 		<>
 			{props.type === 'empty' ? (
@@ -10,7 +19,14 @@ function Card(props) {
 				<CardStyled>
 					<CardInner color={props.type === 'place' ? props.color : '#fff'}>
 						{props.type === 'place' && <Place>{props.children}</Place>}
-						{props.type === 'utility' && <Utility>{props.children}</Utility>}
+						{props.type === 'utility' && (
+							<Utility>
+								<>
+									{props.children}
+									<div>{Icon(props.children[0].props.children)}</div>
+								</>
+							</Utility>
+						)}
 						{props.type === 'chance' && <Chance>{props.children}</Chance>}
 						{props.type === 'community' && (
 							<Community>{props.children}</Community>
@@ -64,8 +80,12 @@ const Place = styled.div`
 `
 
 const Utility = styled.div`
+	text-align: center;
+	> div {
+		margin-top: 15px;
+	}
 	h1 {
-		padding-top: 5px;
+		margin-top: 5px;
 		font-size: 13px;
 		color: #db9e9a;
 		text-align: center;
