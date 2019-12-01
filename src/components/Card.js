@@ -4,7 +4,9 @@ import styled from 'styled-components'
 function Card(props) {
 	return (
 		<CardStyled>
-			<CardInner color={props.color}>{props.children}</CardInner>
+			{props.type === 'place' && (
+				<CardInner color={props.color}>{props.children}</CardInner>
+			)}
 		</CardStyled>
 	)
 }
