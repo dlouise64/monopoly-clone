@@ -25,7 +25,7 @@ function App() {
 				<div key={i} onClick={() => handlePreviewCard(card)}>
 					<Card color={card.color} type={card.type}>
 						<h1>{card.name}</h1>
-						{card.price && <p>${card.price}</p>}
+						{card.property_details && <p>${card.property_details.price}</p>}
 					</Card>
 				</div>
 			))}

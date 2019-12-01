@@ -17,17 +17,25 @@ function PreviewCard(props) {
 			<header>
 				<h1>{props.card.name}</h1>
 			</header>
-			<PreviewCardTableWrapper>
-				<PreviewCardTable
-					price={props.card.price}
-					rent={props.card.rent}
-					mortgage={props.card.mortgage}
-				/>
-			</PreviewCardTableWrapper>
-			<PreviewCardHotelsWrapper>
-				<PreviewCardHotels rents={props.card.hotel_rents} />
-			</PreviewCardHotelsWrapper>
-			<p>Each hotel upgrade costs: $ {props.card.upgrade}</p>
+			{props.card.property_details && (
+				<>
+					<PreviewCardTableWrapper>
+						<PreviewCardTable
+							price={props.card.property_details.price}
+							rent={props.card.property_details.rent}
+							mortgage={props.card.property_details.mortgage}
+						/>
+					</PreviewCardTableWrapper>
+					<PreviewCardHotelsWrapper>
+						<PreviewCardHotels
+							rents={props.card.property_details.hotel_rents}
+						/>
+					</PreviewCardHotelsWrapper>
+					<p>
+						Each hotel upgrade costs: $ {props.card.property_details.upgrade}
+					</p>
+				</>
+			)}
 		</PreviewCardWrapper>
 	)
 }
