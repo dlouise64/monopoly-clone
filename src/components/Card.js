@@ -63,18 +63,19 @@ function Card(props) {
 
 const JailWrapper = styled.div`
 	position: relative;
-	left: 11px;
-	top: 8px;
+	left: 16px;
+	top: 13px;
 	background: #9c89b8;
-	height: 80px;
-	width: 80px;
+	height: 70px;
+	width: 70px;
 	text-align: center;
 	border-radius: 50%;
 
 	svg {
 		position: absolute;
-		top: 14px;
-		left: 17px;
+		top: 13px;
+		left: 13px;
+		height: 45px;
 	}
 `
 
