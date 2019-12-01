@@ -4,9 +4,11 @@ import styled from 'styled-components'
 function Card(props) {
 	return (
 		<CardStyled>
-			{props.type === 'place' && (
-				<CardInner color={props.color}>{props.children}</CardInner>
-			)}
+			<CardInner color={props.color}>
+				{props.type === 'place' && <Place>{props.children}</Place>}
+				{props.type === 'chance' && <Chance>{props.children}</Chance>}
+				{props.type === 'community' && <Community>{props.children}</Community>}
+			</CardInner>
 		</CardStyled>
 	)
 }
@@ -26,7 +28,10 @@ const CardInner = styled.div`
 	border-radius: 10px;
 	position: relative;
 	cursor: pointer;
-	background: ${props => props.color};
+	background: ${props => (props.color ? props.color : '#fff')};
+`
+
+const Place = styled.div`
 	h1 {
 		margin: 0;
 		color: #fff;
@@ -45,6 +50,26 @@ const CardInner = styled.div`
 		color: rgba(244, 244, 244, 0.8);
 		margin: 0;
 		letter-spacing: 1px;
+	}
+`
+
+const Chance = styled.div`
+	h1 {
+		margin: 0;
+		text-align: center;
+		color: #9d8db5;
+		padding-top: 15px;
+		font-size: 48px;
+	}
+`
+
+const Community = styled.div`
+	h1 {
+		margin: 0;
+		text-align: center;
+		color: #9d8db5;
+		padding-top: 15px;
+		font-size: 48px;
 	}
 `
 
