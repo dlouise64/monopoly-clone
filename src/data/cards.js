@@ -19,7 +19,8 @@ const cards = [
 	},
 	{
 		type: 'text',
-		name: 'Tax'
+		name: 'Tax',
+		color: colour.green
 	},
 	{
 		type: 'place',
@@ -124,7 +125,8 @@ const cards = [
 	},
 	{
 		type: 'text',
-		name: 'Tax'
+		name: 'Tax',
+		color: colour.green
 	},
 	{
 		type: 'place',

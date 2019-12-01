@@ -8,7 +8,7 @@ function Card(props) {
 				<div></div>
 			) : (
 				<CardStyled>
-					<CardInner color={props.color}>
+					<CardInner color={props.type === 'place' && props.color}>
 						{props.type === 'place' && <Place>{props.children}</Place>}
 						{props.type === 'utility' && <Utility>{props.children}</Utility>}
 						{props.type === 'chance' && <Chance>{props.children}</Chance>}
