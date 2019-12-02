@@ -30,6 +30,7 @@ function App() {
 	const [tokenStyle, setTokenStyle] = useState({})
 	const [sixes, setSixes] = useState([])
 	const [p1Purchased, setP1Purchased] = useState([])
+	const [playerBank, setPlayerBank] = useState(750)
 
 	useEffect(() => {
 		setTokenStyle({
@@ -62,6 +63,7 @@ function App() {
 	function handleBuy(card) {
 		p1Purchased.push(card)
 		setLandedCard({ show: false })
+		setPlayerBank(playerBank - card.property_details.price)
 	}
 
 	return (
@@ -151,9 +153,49 @@ function App() {
 						</>
 					)
 			)}
+			{cards.map(
+				card =>
+					card.position === curSum &&
+					card.name !== 'Start' &&
+					landedCard.show &&
+					card.type === 'place' &&
+					p1Purchased.find(o => o.name === card.name) && (
+						<>
+							<Button style={{ marginTop: '20px' }}>Buy 1 Hotels</Button>
+							<Button style={{ marginTop: '20px' }}>Buy 2 Hotels</Button>
+							<Button style={{ marginTop: '20px' }}>Buy 3 Hotels</Button>
+						</>
+					)
+			)}
+			{cards.map(
+				card =>
+					card.position === curSum &&
+					card.name !== 'Start' &&
+					landedCard.show &&
+					card.type === 'utility' &&
+					p1Purchased.find(o => o.name === card.name) && (
+						<>
+							<Button style={{ marginTop: '20px' }}>Upgrade 1 stars</Button>
+							<Button style={{ marginTop: '20px' }}>Upgrade 2 stars</Button>
+							<Button style={{ marginTop: '20px' }}>Upgrade 3 stars</Button>
+						</>
+					)
+			)}
+			<PlayerMoney playerBank={playerBank} />
 		</>
 	)
 }
+
+function PlayerMoney({ playerBank }) {
+	return <PlayerMoneyWrapper>$ {playerBank}</PlayerMoneyWrapper>
+}
+
+const PlayerMoneyWrapper = styled.div`
+	margin-top: 10px;
+	font-size: 40px;
+	color: #fff;
+	letter-spacing: 2px;
+`
 
 const P1Tag = styled.span`
 	position: absolute;
