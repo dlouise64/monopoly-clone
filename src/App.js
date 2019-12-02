@@ -84,6 +84,7 @@ function App() {
 		const resetSumOfDices = sumOfDicesRolled - 20
 
 		if (wentPastStart) {
+			setPlayerBank(playerBank + 200)
 			setDicesPlayed([resetSumOfDices]) // if player has moved past Start, reset the initial dice
 			setRecentSum(resetSumOfDices) // needed for handleExit()
 			TokenPosition(resetSumOfDices, setPlayerTokenBoardPosition) // Set the token board position
