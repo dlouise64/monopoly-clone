@@ -48,7 +48,7 @@ function PreviewCard(props) {
 							rents={props.card.property_details.hotel_rents}
 						/>
 					</PreviewCardHotelsWrapper>
-					<BuyButtons />
+					{props.buy && props.buy && <BuyButtons />}
 					{props.card.type === 'place' && (
 						<p>
 							Each hotel upgrade costs: $ {props.card.property_details.upgrade}
@@ -153,7 +153,7 @@ const Button = styled.button`
 	border-radius: 13px;
 	letter-spacing: 2px;
 	text-shadow: 1px 1px white, -1px -1px #555;
-	box-shadow: 0 7px 0px
+	box-shadow: 0 6px 0px
 		${props => (props.color === '#26af17' ? '#074f07' : '#2065a2')};
 	border: 1px solid
 		${props => (props.color === '#26af17' ? '#51c254' : '#299ddd')};

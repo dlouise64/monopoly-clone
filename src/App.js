@@ -290,7 +290,7 @@ function App() {
 							card.name !== 'Start' &&
 							landedCard.show && (
 								<span>
-									<PreviewCard card={card} handleExit={handleExit} />
+									<PreviewCard card={card} buy={true} handleExit={handleExit} />
 								</span>
 							)}
 					</span>
