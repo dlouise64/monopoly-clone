@@ -48,6 +48,7 @@ function PreviewCard(props) {
 							rents={props.card.property_details.hotel_rents}
 						/>
 					</PreviewCardHotelsWrapper>
+					<BuyButtons />
 					{props.card.type === 'place' && (
 						<p>
 							Each hotel upgrade costs: $ {props.card.property_details.upgrade}
@@ -95,6 +96,14 @@ function PreviewCardHotels(props) {
 	)
 }
 
+function BuyButtons() {
+	return (
+		<BuyButtonsWrapper>
+			<Button color="#26af17">Buy</Button>
+			<Button color="#2982c5">Pass</Button>
+		</BuyButtonsWrapper>
+	)
+}
 function Hotel(props) {
 	return (
 		<HotelWrapper>
@@ -128,6 +137,34 @@ function PreviewCardTable(props) {
 	)
 }
 
+const Button = styled.button`
+	padding: 3px 0 9px;
+	width: 130px;
+	background: ${props => props.color};
+	background-image: linear-gradient(
+		-180deg,
+		${props => (props.color === '#26af17' ? '#51de24' : '#3a84ec')} 0%,
+		${props => (props.color === '#26af17' ? '#008521' : '#227ec7')} 100%
+	);
+	margin-right: 10px;
+	color: rgba(244, 244, 244, 0.5);
+	font-size: 22px;
+
+	border-radius: 13px;
+	letter-spacing: 2px;
+	text-shadow: 1px 1px white, -1px -1px #555;
+	box-shadow: 0 7px 0px
+		${props => (props.color === '#26af17' ? '#074f07' : '#2065a2')};
+	border: 1px solid
+		${props => (props.color === '#26af17' ? '#51c254' : '#299ddd')};
+	text-transform: uppercase;
+`
+
+const BuyButtonsWrapper = styled.div`
+	position: absolute;
+	width: 100%;
+	left: 0;
+`
 const PreviewCardHotelsInner = styled.div`
 	> h2 {
 		margin: 0 0 5px;
@@ -173,13 +210,14 @@ const PreviewCardHotelsWrapper = styled.div`
 	table {
 		table-layout: fixed;
 		width: 100%;
-		margin-top: 20px;
+		margin-top: 13px;
+		margin-bottom: 5px;
 		border-collapse: separate;
 		border-spacing: 10px 10px;
 		td {
 			background: #d7d7d7;
 			color: #2c292a;
-			height: 105px;
+			height: 75px;
 			text-align: center;
 			border-radius: 15px;
 			position: relative;
@@ -204,9 +242,10 @@ const PreviewCardTableWrapper = styled.div`
 	}
 
 	td:nth-child(1) {
-		padding: 7px 0 7px 20px;
+		padding: 6px 0 6px 20px;
 		border-top-left-radius: 5px;
 		border-bottom-left-radius: 5px;
+		text-align: left;
 	}
 
 	td:nth-child(2) {
@@ -242,7 +281,7 @@ const PreviewCardWrapper = styled.div`
 		color: #a1a1a1;
 		position: absolute;
 		left: 0;
-		bottom: 20px;
+		bottom: 5px;
 		width: 100%;
 	}
 

@@ -14,6 +14,11 @@ function App() {
 		card: null
 	})
 
+	const [landedCard, setLandedCard] = useState({
+		show: true,
+		card: null
+	})
+
 	const [currentDiceRolled, setCurrentDiceRolled] = useState(0)
 	const [position, setPosition] = useState([])
 	const [curSum, setSum] = useState(0)
@@ -38,11 +43,18 @@ function App() {
 	}
 
 	function handleExit() {
-		setPreviewCard({ show: false, card: { ...previewCard.card } })
+		if (previewCard.card !== null) {
+			setPreviewCard({ show: false, card: { ...previewCard.card } })
+		}
+		cards.map(
+			card =>
+				card.position === curSum && setLandedCard({ show: false, card: card })
+		)
 	}
 
 	function rollDice(e) {
 		e.preventDefault()
+		setLandedCard({ show: true })
 
 		countSixes()
 
@@ -271,6 +283,18 @@ function App() {
 				{previewCard.show && (
 					<PreviewCard card={previewCard.card} handleExit={handleExit} />
 				)}
+
+				{cards.map((card, i) => (
+					<span key={i}>
+						{card.position === curSum &&
+							card.name !== 'Start' &&
+							landedCard.show && (
+								<span>
+									<PreviewCard card={card} handleExit={handleExit} />
+								</span>
+							)}
+					</span>
+				))}
 			</Board>
 		</>
 	)
