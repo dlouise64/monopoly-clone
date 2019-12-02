@@ -63,7 +63,11 @@ function App() {
 	function handleBuy(card) {
 		p1Purchased.push(card)
 		setLandedCard({ show: false })
-		setPlayerBank(playerBank - card.property_details.price)
+		if (playerBank - card.property_details.price < 0) {
+			alert('you cant afford this, mortgage a property or sell hotels')
+		} else {
+			setPlayerBank(playerBank - card.property_details.price)
+		}
 	}
 
 	return (
