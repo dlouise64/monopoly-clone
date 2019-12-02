@@ -48,7 +48,9 @@ function PreviewCard(props) {
 							rents={props.card.property_details.hotel_rents}
 						/>
 					</PreviewCardHotelsWrapper>
-					{props.buy && props.buy && <BuyButtons />}
+					{props.buy && props.buy && (
+						<BuyButtons handleBuy={props.handleBuy} card={props.card} />
+					)}
 					{props.card.type === 'place' && (
 						<p>
 							Each hotel upgrade costs: $ {props.card.property_details.upgrade}
@@ -96,10 +98,12 @@ function PreviewCardHotels(props) {
 	)
 }
 
-function BuyButtons() {
+function BuyButtons(props) {
 	return (
 		<BuyButtonsWrapper>
-			<Button color="#26af17">Buy</Button>
+			<Button color="#26af17" onClick={() => props.handleBuy(props.card)}>
+				Buy
+			</Button>
 			<Button color="#2982c5">Pass</Button>
 		</BuyButtonsWrapper>
 	)

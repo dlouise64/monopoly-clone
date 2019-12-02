@@ -5,7 +5,7 @@ import Board from './components/Board'
 import cards from './data/cards'
 import PreviewCard from './components/PreviewCard'
 import Token from './images/monopoly_token_ship.png'
-
+import { ReactComponent as PlayerGreen } from './images/player_green.svg'
 import styled from 'styled-components'
 
 function App() {
@@ -24,6 +24,8 @@ function App() {
 	const [curSum, setSum] = useState(0)
 	const [tokenStyle, setTokenStyle] = useState({})
 	const [sixes, setSixes] = useState([])
+	const [p1Purchased, setP1Purchased] = useState([])
+
 	useEffect(() => {
 		setTokenStyle({
 			position: 'absolute',
@@ -76,6 +78,10 @@ function App() {
 		}
 	}
 
+	function handleBuy(card) {
+		p1Purchased.push(card)
+		setLandedCard({ show: false })
+	}
 	function setTokenPosition(pos) {
 		const tokenDefaultStyles = {
 			position: 'absolute',
@@ -277,6 +283,13 @@ function App() {
 						<Card color={card.color} type={card.type}>
 							<h1>{card.name}</h1>
 							{card.property_details && <p>${card.property_details.price}</p>}
+
+							{p1Purchased.find(o => o.name === card.name) && (
+								<P1Tag>
+									<span>$ {card.property_details.rent}</span>
+									<PlayerGreen />
+								</P1Tag>
+							)}
 						</Card>
 					</div>
 				))}
@@ -290,7 +303,12 @@ function App() {
 							card.name !== 'Start' &&
 							landedCard.show && (
 								<span>
-									<PreviewCard card={card} buy={true} handleExit={handleExit} />
+									<PreviewCard
+										card={card}
+										buy={true}
+										handleExit={handleExit}
+										handleBuy={handleBuy}
+									/>
 								</span>
 							)}
 					</span>
@@ -300,6 +318,22 @@ function App() {
 	)
 }
 
+const P1Tag = styled.div`
+	position: absolute;
+	top: 40px;
+	left: -1px;
+	transform: rotate(-9deg);
+	span {
+		position: absolute;
+		width: 100%;
+		top: 10px;
+		left: 0;
+		font-size: 19px;
+		letter-spacing: 1px;
+		text-shadow: 0 0 1px rgba(0, 0, 0, 0.7);
+		color: #fff;
+	}
+`
 const Button = styled.button`
 	width: 120px;
 	padding: 10px;
