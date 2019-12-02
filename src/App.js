@@ -15,7 +15,7 @@ import Button from './components/Button'
 function App() {
 	const [previewCard, setPreviewCard] = useState({ show: false, card: null })
 
-	const [landedCard, setLandedCard] = useState(true)
+	const [landedCardPreview, setLandedCardPreview] = useState(true)
 
 	const [recentDiceRolled, setDiceRolled] = useState(0)
 	const [dicesPlayed, setDicesPlayed] = useState([])
@@ -42,8 +42,8 @@ function App() {
 			})
 		}
 
-		if (landedCard) {
-			setLandedCard(false)
+		if (landedCardPreview) {
+			setLandedCardPreview(false)
 		}
 	}
 
@@ -55,7 +55,9 @@ function App() {
 			})
 		}
 
-		cards.map(card => card.position === recentSum && setLandedCard(false))
+		cards.map(
+			card => card.position === recentSum && setLandedCardPreview(false)
+		)
 	}
 
 	function handleBuy(card) {
@@ -66,7 +68,7 @@ function App() {
 		} else {
 			setPlayerBank(playerBank - card.property_details.price)
 		}
-		setLandedCard({ show: false })
+		setLandedCardPreview({ show: false })
 	}
 
 	function rollTheDice() {
@@ -75,7 +77,15 @@ function App() {
 		setDiceRolled(roll)
 		dicesPlayed.push(roll)
 		moveTokenOnBoard()
-		setLandedCard(true)
+		setLandedCardPreview(true)
+
+		cards
+			.filter(card => card.name === 'Tax')
+			.map(
+				item =>
+					item.position === recentSum &&
+					setPlayerBank(playerBank - parseInt((playerBank / 100) * 7))
+			)
 	}
 
 	function moveTokenOnBoard() {
@@ -129,7 +139,7 @@ function App() {
 					<span key={i}>
 						{card.position === recentSum &&
 							card.name !== 'Start' &&
-							landedCard && (
+							landedCardPreview && (
 								<span>
 									<PreviewCard
 										card={card}
@@ -146,7 +156,7 @@ function App() {
 					</span>
 				))}
 			</Board>
-			{console.log(tokenBoardPosition)}
+
 			{cards.map(
 				card =>
 					recentSum === card.position &&
