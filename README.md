@@ -6,10 +6,10 @@
 
 # TODOs
 
-- use next.js
+- add all tasks to project board
+- use next.js and typescript
 - make responsive grid board (start with mobile view)
 - styled main board background
-- add all tasks to project board
 - style board card for utilities
 - style board card for places
 - style board card for tax
