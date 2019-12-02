@@ -7,62 +7,60 @@ import PreviewCard from './components/PreviewCard'
 
 import { ReactComponent as PlayerGreen } from './images/player_green.svg'
 import styled from 'styled-components'
-import PlayerScreen from './components/PlayerScreen'
-import GoToJailChecker from './lib/GotoJailChecker'
+// import GoToJailChecker from './lib/GotoJailChecker'
 import TokenPosition from './lib/TokenPosition'
 import PlayerToken from './components/PlayerToken'
 import Button from './components/Button'
 
 function App() {
-	const [previewCard, setPreviewCard] = useState({
-		show: false,
-		card: null
-	})
+	const [previewCard, setPreviewCard] = useState({ show: false, card: null })
 
-	const [landedCard, setLandedCard] = useState({
-		show: true,
-		card: null
-	})
+	const [landedCard, setLandedCard] = useState(true)
 
-	const [diceRolled, setDiceRolled] = useState(0)
-	const [position, setPosition] = useState([])
-	const [curSum, setSum] = useState(0)
-	const [tokenStyle, setTokenStyle] = useState({})
-	const [sixes, setSixes] = useState([])
-	const [p1Purchased, setP1Purchased] = useState([])
+	const [recentDiceRolled, setDiceRolled] = useState(0)
+	const [dicesPlayed, setDicesPlayed] = useState([])
+	const [recentSum, setRecentSum] = useState(0)
+	const [tokenBoardPosition, setPlayerTokenBoardPosition] = useState({})
+	// const [sixes, setSixes] = useState([])
+	const [playerPurchases] = useState([])
 	const [playerBank, setPlayerBank] = useState(750)
 
 	useEffect(() => {
-		setTokenStyle({
+		setPlayerTokenBoardPosition({
 			position: 'absolute',
 			zIndex: 1,
 			bottom: '20px',
 			left: '40px'
 		})
-	}, [setTokenStyle])
+	}, [setPlayerTokenBoardPosition])
 
 	function handlePreviewCard(card) {
 		if (card.type !== 'empty') {
 			setPreviewCard({
 				show: card.name !== 'Jail' && card.name !== 'Start' ? true : false,
-				card: card
+				card: card // needed for regular preview card
 			})
+		}
+
+		if (landedCard) {
+			setLandedCard(false)
 		}
 	}
 
 	function handleExit() {
 		if (previewCard.card !== null) {
-			setPreviewCard({ show: false, card: { ...previewCard.card } })
+			setPreviewCard({
+				show: false,
+				card: { ...previewCard.card }
+			})
 		}
-		cards.map(
-			card =>
-				card.position === curSum && setLandedCard({ show: false, card: card })
-		)
+
+		cards.map(card => card.position === recentSum && setLandedCard(false))
 	}
 
 	function handleBuy(card) {
-		p1Purchased.push(card)
-		setLandedCard({ show: false })
+		playerPurchases.push(card)
+		setLandedCard({ show: true })
 		if (playerBank - card.property_details.price < 0) {
 			alert('you cant afford this, mortgage a property or sell hotels')
 		} else {
@@ -70,33 +68,48 @@ function App() {
 		}
 	}
 
+	function rollTheDice() {
+		// returns a random number from 1 to 6
+		const roll = Math.floor(Math.random() * 6 + 1)
+		setDiceRolled(roll)
+		dicesPlayed.push(roll)
+		moveTokenOnBoard()
+		setLandedCard(true)
+	}
+
+	function moveTokenOnBoard() {
+		// move the players token on the board
+		const sumOfDicesRolled = dicesPlayed.reduce((a, b) => a + b, 0)
+		const wentPastStart = sumOfDicesRolled > 19
+		const resetSumOfDices = sumOfDicesRolled - 20
+
+		if (wentPastStart) {
+			setDicesPlayed([resetSumOfDices]) // if player has moved past Start, reset the initial dice
+			setRecentSum(resetSumOfDices) // needed for handleExit()
+			TokenPosition(resetSumOfDices, setPlayerTokenBoardPosition) // Set the token board position
+		} else {
+			setRecentSum(sumOfDicesRolled) // needed for handleExit()
+			TokenPosition(sumOfDicesRolled, setPlayerTokenBoardPosition) // Set the token board position
+		}
+	}
+
+	// function numberOfSixesRolled() {
+	// 	// if 3 x 6 die rolls, go to jail
+	// }
+
 	return (
 		<>
-			<PlayerScreen
-				setLandedCard={setLandedCard}
-				GoToJailChecker={GoToJailChecker}
-				setDiceRolled={setDiceRolled}
-				position={position}
-				setPosition={setPosition}
-				setSum={setSum}
-				TokenPosition={TokenPosition}
-				setTokenStyle={setTokenStyle}
-				sixes={sixes}
-				diceRolled={diceRolled}
-				setSixes={setSixes}
-				cards={cards}
-				curSum={curSum}
-			/>
-
+			<div style={{ color: 'white' }}>You rolled a {recentDiceRolled}</div>
+			<button onClick={() => rollTheDice()}>Roll the dice</button>
 			<Board>
-				<PlayerToken tokenStyle={tokenStyle} />
+				<PlayerToken tokenBoardPosition={tokenBoardPosition} />
 				{cards.map((card, i) => (
 					<div key={i} onClick={() => handlePreviewCard(card)}>
 						<Card color={card.color} type={card.type}>
 							<h1>{card.name}</h1>
 							{card.property_details && <p>${card.property_details.price}</p>}
 
-							{p1Purchased.find(o => o.name === card.name) && (
+							{playerPurchases.find(o => o.name === card.name) && (
 								<P1Tag>
 									{console.log(card.name)}
 									<span>$ {card.property_details.rent}</span>
@@ -112,14 +125,16 @@ function App() {
 
 				{cards.map((card, i) => (
 					<span key={i}>
-						{card.position === curSum &&
+						{card.position === recentSum &&
 							card.name !== 'Start' &&
-							landedCard.show && (
+							landedCard && (
 								<span>
 									<PreviewCard
 										card={card}
 										buy={
-											p1Purchased.find(o => o.name === card.name) ? false : true
+											playerPurchases.find(o => o.name === card.name)
+												? false
+												: true
 										}
 										handleExit={handleExit}
 										handleBuy={handleBuy}
@@ -131,11 +146,11 @@ function App() {
 			</Board>
 			{cards.map(
 				card =>
-					card.position === curSum &&
+					card.position === recentSum &&
 					card.name !== 'Start' &&
 					landedCard.show &&
 					card.type === 'place' &&
-					p1Purchased.find(o => o.name === card.name) && (
+					playerPurchases.find(o => o.name === card.name) && (
 						<>
 							<Button style={{ marginTop: '20px' }}>Buy 1 Hotels</Button>
 							<Button style={{ marginTop: '20px' }}>Buy 2 Hotels</Button>
@@ -145,11 +160,11 @@ function App() {
 			)}
 			{cards.map(
 				card =>
-					card.position === curSum &&
+					card.position === recentSum &&
 					card.name !== 'Start' &&
 					landedCard.show &&
 					card.type === 'utility' &&
-					p1Purchased.find(o => o.name === card.name) && (
+					playerPurchases.find(o => o.name === card.name) && (
 						<>
 							<Button style={{ marginTop: '20px' }}>Upgrade 1 star</Button>
 							<Button style={{ marginTop: '20px' }}>Upgrade 2 stars</Button>
@@ -159,11 +174,11 @@ function App() {
 			)}
 			{cards.map(
 				card =>
-					card.position === curSum &&
+					card.position === recentSum &&
 					card.name !== 'Start' &&
 					landedCard.show &&
 					card.type === 'place' &&
-					p1Purchased.find(o => o.name === card.name) && (
+					playerPurchases.find(o => o.name === card.name) && (
 						<>
 							<Button style={{ marginTop: '20px' }}>Buy 1 Hotels</Button>
 							<Button style={{ marginTop: '20px' }}>Buy 2 Hotels</Button>
@@ -173,11 +188,11 @@ function App() {
 			)}
 			{cards.map(
 				card =>
-					card.position === curSum &&
+					card.position === recentSum &&
 					card.name !== 'Start' &&
 					landedCard.show &&
 					card.type === 'utility' &&
-					p1Purchased.find(o => o.name === card.name) && (
+					playerPurchases.find(o => o.name === card.name) && (
 						<>
 							<Button style={{ marginTop: '20px' }}>Upgrade 1 stars</Button>
 							<Button style={{ marginTop: '20px' }}>Upgrade 2 stars</Button>
