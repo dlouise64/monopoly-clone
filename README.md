@@ -6,7 +6,25 @@
 
 # TODOs
 
+- make responsive grid board (start with mobile view)
+- styled main board background
 - add all tasks to project board
+- style board card for utilities
+- style board card for places
+- style board card for tax
+- style board card for jail
+- style board card for Start
+- style preview card
+- create icons for all cards, jail, railway, water works, electricity
+- style buy and pass buttons
+- add cards to object array
+- add dice logic so player can move around the board
+- create and style player tokens, green and red
+- user should not be able to rebuy a card they already purchased
+- add details to preview card including card colours
+- add panel to purchase stars or hotels
+- add preview card animation (bounce in / bounce out on exit)
+- style exit button
 - add used Chance and community cards to a pile and delete from the array
 - add jail description to preview card
 - style jail preview card
@@ -18,6 +36,7 @@
    on how many houses / stars the property already has
 - find hotel icon
 - make yellow star icon
+- style and make label for stars to go on outer side of card on board (this should have amount of stars purchased)
 - add player 2
 - add logic where if a player cannot afford to pay bills, they lose the game.
 - last person standing is the winner
