@@ -11,6 +11,7 @@ import PlayerScreen from './components/PlayerScreen'
 import GoToJailChecker from './lib/GotoJailChecker'
 import TokenPosition from './lib/TokenPosition'
 import PlayerToken from './components/PlayerToken'
+import Button from './components/Button'
 
 function App() {
 	const [previewCard, setPreviewCard] = useState({
@@ -122,6 +123,20 @@ function App() {
 					</span>
 				))}
 			</Board>
+			{cards.map(
+				card =>
+					card.position === curSum &&
+					card.name !== 'Start' &&
+					landedCard.show &&
+					card.type === 'place' &&
+					p1Purchased.find(o => o.name === card.name) && (
+						<>
+							<Button style={{ marginTop: '20px' }}>Buy 1 Hotels</Button>
+							<Button style={{ marginTop: '20px' }}>Buy 2 Hotels</Button>
+							<Button style={{ marginTop: '20px' }}>Buy 3 Hotels</Button>
+						</>
+					)
+			)}
 		</>
 	)
 }
