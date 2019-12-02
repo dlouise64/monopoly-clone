@@ -137,6 +137,20 @@ function App() {
 						</>
 					)
 			)}
+			{cards.map(
+				card =>
+					card.position === curSum &&
+					card.name !== 'Start' &&
+					landedCard.show &&
+					card.type === 'utility' &&
+					p1Purchased.find(o => o.name === card.name) && (
+						<>
+							<Button style={{ marginTop: '20px' }}>Upgrade 1 star</Button>
+							<Button style={{ marginTop: '20px' }}>Upgrade 2 stars</Button>
+							<Button style={{ marginTop: '20px' }}>Upgrade 3 star</Button>
+						</>
+					)
+			)}
 		</>
 	)
 }
