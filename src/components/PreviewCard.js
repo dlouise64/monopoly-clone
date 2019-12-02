@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import ExitButton from './ExitButton'
 import { ReactComponent as Star } from '../images/star.svg'
+import { chanceCards, communityCards } from '../data/chanceCards'
 
 function PreviewCard(props) {
 	return (
@@ -24,9 +25,28 @@ function PreviewCard(props) {
 						: props.card.name}
 				</h1>
 			</header>
-			{props.card.description && (
-				<Description>{props.card.description}</Description>
+			{props.card.type === 'chance' && (
+				<Description>
+					{
+						chanceCards[Math.floor(Math.random() * chanceCards.length)]
+							.description
+					}
+				</Description>
 			)}
+
+			{props.card.type === 'community' && (
+				<Description>
+					{
+						communityCards[Math.floor(Math.random() * communityCards.length)]
+							.description
+					}
+				</Description>
+			)}
+			{props.card.description &&
+				props.card.type !== 'chance' &&
+				props.card.type !== 'community' && (
+					<Description>{props.card.description}</Description>
+				)}
 			{props.card.property_details && (
 				<>
 					{props.card.type === 'utility' && (

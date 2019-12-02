@@ -78,7 +78,22 @@ function App() {
 		dicesPlayed.push(roll)
 		moveTokenOnBoard()
 		setLandedCardPreview(true)
+		collectTaxes()
+	}
 
+	// function drawAChanceCard() {
+	// 	cards
+	// 		.filter(card => card.type === 'chance')
+	// 		.map(
+	// 			item =>
+	// 				item.position === recentSum &&
+	// 				setChanceCard(
+	// 					chanceCards[Math.floor(Math.random() * chanceCards.length)]
+	// 				)
+	// 		)
+	// }
+
+	function collectTaxes() {
 		cards
 			.filter(card => card.name === 'Tax')
 			.map(
@@ -89,6 +104,7 @@ function App() {
 	}
 
 	function moveTokenOnBoard() {
+		// drawAChanceCard()
 		// move the players token on the board
 		const sumOfDicesRolled = dicesPlayed.reduce((a, b) => a + b, 0)
 		const wentPastStart = sumOfDicesRolled > 19
