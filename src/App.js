@@ -111,7 +111,9 @@ function App() {
 								<span>
 									<PreviewCard
 										card={card}
-										buy={true}
+										buy={
+											p1Purchased.find(o => o.name === card.name) ? false : true
+										}
 										handleExit={handleExit}
 										handleBuy={handleBuy}
 									/>
