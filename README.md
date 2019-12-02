@@ -6,6 +6,7 @@
 
 # TODOs
 
+- use next.js
 - make responsive grid board (start with mobile view)
 - styled main board background
 - add all tasks to project board
@@ -37,7 +38,10 @@
 - find hotel icon
 - make yellow star icon
 - style and make label for stars to go on outer side of card on board (this should have amount of stars purchased)
+- decide where to store game data
+- setup api
 - add player 2
+- add logic to switch turns
 - add logic where if a player cannot afford to pay bills, they lose the game.
 - last person standing is the winner
 - add mortgage logic (the board highlights players property that can be mortgaged)
