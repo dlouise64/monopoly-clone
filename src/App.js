@@ -60,12 +60,13 @@ function App() {
 
 	function handleBuy(card) {
 		playerPurchases.push(card)
-		setLandedCard({ show: true })
+
 		if (playerBank - card.property_details.price < 0) {
 			alert('you cant afford this, mortgage a property or sell hotels')
 		} else {
 			setPlayerBank(playerBank - card.property_details.price)
 		}
+		setLandedCard({ show: false })
 	}
 
 	function rollTheDice() {
@@ -145,57 +146,26 @@ function App() {
 					</span>
 				))}
 			</Board>
+			{console.log(tokenBoardPosition)}
 			{cards.map(
 				card =>
-					card.position === recentSum &&
-					card.name !== 'Start' &&
-					landedCard.show &&
+					recentSum === card.position &&
 					card.type === 'place' &&
 					playerPurchases.find(o => o.name === card.name) && (
 						<>
-							<Button style={{ marginTop: '20px' }}>Buy 1 Hotels</Button>
-							<Button style={{ marginTop: '20px' }}>Buy 2 Hotels</Button>
-							<Button style={{ marginTop: '20px' }}>Buy 3 Hotels</Button>
+							<Button style={{ marginTop: '20px' }}>Upgrade 1 hotel</Button>
+							<Button style={{ marginTop: '20px' }}>Upgrade 2 hotels</Button>
+							<Button style={{ marginTop: '20px' }}>Upgrade 3 hotels</Button>
 						</>
 					)
 			)}
 			{cards.map(
 				card =>
-					card.position === recentSum &&
-					card.name !== 'Start' &&
-					landedCard.show &&
+					recentSum === card.position &&
 					card.type === 'utility' &&
 					playerPurchases.find(o => o.name === card.name) && (
 						<>
 							<Button style={{ marginTop: '20px' }}>Upgrade 1 star</Button>
-							<Button style={{ marginTop: '20px' }}>Upgrade 2 stars</Button>
-							<Button style={{ marginTop: '20px' }}>Upgrade 3 star</Button>
-						</>
-					)
-			)}
-			{cards.map(
-				card =>
-					card.position === recentSum &&
-					card.name !== 'Start' &&
-					landedCard.show &&
-					card.type === 'place' &&
-					playerPurchases.find(o => o.name === card.name) && (
-						<>
-							<Button style={{ marginTop: '20px' }}>Buy 1 Hotels</Button>
-							<Button style={{ marginTop: '20px' }}>Buy 2 Hotels</Button>
-							<Button style={{ marginTop: '20px' }}>Buy 3 Hotels</Button>
-						</>
-					)
-			)}
-			{cards.map(
-				card =>
-					card.position === recentSum &&
-					card.name !== 'Start' &&
-					landedCard.show &&
-					card.type === 'utility' &&
-					playerPurchases.find(o => o.name === card.name) && (
-						<>
-							<Button style={{ marginTop: '20px' }}>Upgrade 1 stars</Button>
 							<Button style={{ marginTop: '20px' }}>Upgrade 2 stars</Button>
 							<Button style={{ marginTop: '20px' }}>Upgrade 3 stars</Button>
 						</>
