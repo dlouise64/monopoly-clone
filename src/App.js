@@ -5,6 +5,9 @@ import Board from './components/Board'
 import cards from './data/cards'
 import PreviewCard from './components/PreviewCard'
 import Token from './images/monopoly_token_ship.png'
+
+import styled from 'styled-components'
+
 function App() {
 	const [previewCard, setPreviewCard] = useState({
 		show: false,
@@ -15,7 +18,7 @@ function App() {
 	const [position, setPosition] = useState([])
 	const [curSum, setSum] = useState(0)
 	const [tokenStyle, setTokenStyle] = useState({})
-
+	const [sixes, setSixes] = useState([])
 	useEffect(() => {
 		setTokenStyle({
 			position: 'absolute',
@@ -41,11 +44,15 @@ function App() {
 	function rollDice(e) {
 		e.preventDefault()
 
+		countSixes()
+
 		const roll = Math.floor(Math.random() * 6 + 1)
+		// const roll = 6
 		setCurrentDiceRolled(roll)
 		position.push(roll)
 
 		const sum = position.reduce((a, b) => a + b, 0)
+		// const sum = 6
 
 		if (sum > 19) {
 			setPosition([sum - 20])
@@ -58,8 +65,6 @@ function App() {
 	}
 
 	function setTokenPosition(pos) {
-		console.log(pos)
-
 		const tokenDefaultStyles = {
 			position: 'absolute',
 			zIndex: 1
@@ -189,6 +194,36 @@ function App() {
 		}
 	}
 
+	function countSixes() {
+		if (sixes.length === 0 && currentDiceRolled === 6) {
+			setSixes(['*'])
+		}
+
+		if (sixes.length === 0 && currentDiceRolled !== 6) {
+			setSixes([])
+		}
+
+		if (sixes.length === 1 && currentDiceRolled === 6) {
+			setSixes(['*', '*'])
+		}
+
+		if (sixes.length === 1 && currentDiceRolled !== 6) {
+			setSixes([])
+		}
+
+		if (sixes.length === 2 && currentDiceRolled !== 6) {
+			setSixes([])
+		}
+
+		if (sixes.length === 2 && currentDiceRolled === 6) {
+			setSixes(['*', '*', '*'])
+		}
+
+		if (sixes.length === 3) {
+			alert('go to jail, you rolled 6 3 times in a row')
+		}
+	}
+
 	return (
 		<>
 			<div
@@ -208,19 +243,19 @@ function App() {
 						  }`}
 				</span>
 				{cards.map((card, i) => (
-					<>
+					<span key={i}>
 						{card.position === curSum && (
-							<span key={i}>
+							<span>
 								{card.name === 'Start'
 									? ', you are on Start'
 									: ` & landed on ${card.name}`}
 							</span>
 						)}
-					</>
+					</span>
 				))}
-				<button onClick={e => rollDice(e)} style={{ marginLeft: '10px' }}>
+				<Button onClick={e => rollDice(e)} style={{ marginLeft: '10px' }}>
 					Roll Dice
-				</button>
+				</Button>
 			</div>
 
 			<Board>
@@ -241,4 +276,13 @@ function App() {
 	)
 }
 
+const Button = styled.button`
+	width: 120px;
+	padding: 10px;
+	background: #b4cb55;
+	color: #fff;
+	border-radius: 4px;
+	border: 0;
+	font-size: 18px;
+`
 export default App
