@@ -33,7 +33,7 @@ function Card(props) {
 						{type === 'utility' && (
 							<Utility>
 								<>
-									<h1>{children[0].props.children}</h1>
+									{children}
 									<div>{Icon(children[0].props.children)}</div>
 								</>
 							</Utility>
@@ -127,6 +127,9 @@ const Utility = styled.div`
 		color: #db9e9a;
 		text-align: center;
 		text-transform: uppercase;
+	}
+	p {
+		display: none;
 	}
 `
 

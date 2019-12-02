@@ -239,6 +239,7 @@ function App() {
 
 		if (sixes.length === 3) {
 			alert('go to jail, you rolled 6 3 times in a row')
+			setSixes([])
 		}
 	}
 
@@ -286,6 +287,7 @@ function App() {
 
 							{p1Purchased.find(o => o.name === card.name) && (
 								<P1Tag>
+									{console.log(card.name)}
 									<span>$ {card.property_details.rent}</span>
 									<PlayerGreen />
 								</P1Tag>
@@ -318,7 +320,7 @@ function App() {
 	)
 }
 
-const P1Tag = styled.div`
+const P1Tag = styled.span`
 	position: absolute;
 	top: 40px;
 	left: -1px;
