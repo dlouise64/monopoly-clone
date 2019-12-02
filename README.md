@@ -2,6 +2,8 @@
 
 [Demo](https://monopoly-clone.now.sh/)
 
+![Screen Shot 2019-12-02 at 11 12 35 PM](https://user-images.githubusercontent.com/4723307/69969265-f9d98200-1580-11ea-9900-6e9ed28b795b.png)
+
 # TODOs
 
 - add all tasks to project board
