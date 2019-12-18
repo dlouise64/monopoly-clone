@@ -14,7 +14,7 @@ function PreviewCard(props) {
 						card: props.card
 					})
 				}>
-				<ExitButton />
+				{props.card.name !== 'Jail' && <ExitButton />}
 			</div>
 			<header>
 				<h1>
@@ -25,6 +25,18 @@ function PreviewCard(props) {
 						: props.card.name}
 				</h1>
 			</header>
+
+			{props.card.name === 'Jail' && (
+				<>
+					<Description type="jail">
+						You have been imprisoned. Pay $70 to get out now or spend 2 turns in
+						prison
+					</Description>
+					<Button color="#26af17">Pay $70</Button>
+					<Button font="small">skip 2 turns</Button>
+				</>
+			)}
+
 			{props.card.type === 'chance' && (
 				<Description>
 					{
@@ -90,7 +102,7 @@ function PreviewCard(props) {
 
 function Description(props) {
 	return (
-		<DescriptionInner>
+		<DescriptionInner type={props.type}>
 			<p>{props.children}</p>
 		</DescriptionInner>
 	)
@@ -163,7 +175,7 @@ function PreviewCardTable(props) {
 
 const Button = styled.button`
 	padding: 3px 0 9px;
-	width: 130px;
+	width: ${props => (props.font === 'small' ? '200px' : '130px')};
 	background: ${props => props.color};
 	background-image: linear-gradient(
 		-180deg,
@@ -172,7 +184,7 @@ const Button = styled.button`
 	);
 	margin-right: 10px;
 	color: rgba(244, 244, 244, 0.5);
-	font-size: 22px;
+	font-size: ${props => (props.font === 'small' ? '20px' : '22px')};
 
 	border-radius: 13px;
 	letter-spacing: 2px;
@@ -331,7 +343,8 @@ const PreviewCardWrapper = styled.div`
 `
 
 const DescriptionInner = styled.div`
-	margin: 80px 50px 20px;
+	margin: ${props =>
+		props.type && props.type === 'jail' ? '25px 50px 50px' : '80px 50px 20px'}
 	font-size: 24px;
 	p {
 		text-align: center;

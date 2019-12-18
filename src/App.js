@@ -25,6 +25,8 @@ function App() {
 	const [playerPurchases] = useState([])
 	const [playerBank, setPlayerBank] = useState(750)
 
+	const [stayInJail, setStayInJail] = useState(false)
+
 	useEffect(() => {
 		setPlayerTokenBoardPosition({
 			position: 'absolute',
@@ -79,6 +81,7 @@ function App() {
 		moveTokenOnBoard()
 		setLandedCardPreview(true)
 		collectTaxes()
+		inJail()
 	}
 
 	// function drawAChanceCard() {
@@ -101,6 +104,16 @@ function App() {
 					item.position === recentSum &&
 					setPlayerBank(playerBank - parseInt((playerBank / 100) * 7))
 			)
+	}
+
+	function inJail() {
+		const jail = cards.map(
+			card => card.position === recentSum && card.name === 'Jail'
+		)
+
+		if (jail) {
+			setPlayerBank(playerBank - 70)
+		}
 	}
 
 	function moveTokenOnBoard() {
