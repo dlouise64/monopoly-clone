@@ -68,7 +68,7 @@ function App() {
 		} else {
 			setPlayerBank(playerBank - card.property_details.price)
 		}
-		setLandedCardPreview({ show: false })
+		setLandedCardPreview(false)
 	}
 
 	function rollTheDice() {
